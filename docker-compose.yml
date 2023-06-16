@@ -10,6 +10,16 @@ services:
       - mysql
     command: sh -c 'sleep 5 && go run ./main.go'
 
+  go-template-debug:
+    build:
+      context: .
+      dockerfile: Dockerfile.debug
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    command: sh -c 'sleep 5 && go run ./main.go'
+
   mysql:
     image: mysql:latest
     environment:

@@ -1,0 +1,19 @@
+FROM golang:1.18-alpine AS build
+
+WORKDIR /app
+
+COPY . .
+
+RUN apk add --no-cache gcc musl-dev
+
+RUN go fmt ./...
+RUN go vet ./...
+RUN go mod tidy
+
+RUN CGO_ENABLED=0 go install -ldflags "-s -w -extldflags '-static'" github.com/go-delve/delve/cmd/dlv@latest
+# ENV GO111MODULE=off
+
+# Build the Go project
+RUN CGO_ENABLED=0 go build -gcflags "all=-N -l" -o main .
+
+CMD [ "/go/bin/dlv", "--listen=:3000", "--headless=true", "--log=true", "--accept-multiclient", "--api-version=2", "exec", "./main" ]

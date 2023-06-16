@@ -9,12 +9,8 @@ RUN apk add --no-cache gcc musl-dev
 RUN go fmt ./...
 RUN go vet ./...
 RUN go mod tidy
-RUN go build -gcflags "all=-N -l" -o main .
 
-FROM alpine:latest
-
-WORKDIR /app
-
-COPY --from=build /app/main .
+# Build the Go project
+RUN go build -o main .
 
 CMD ["./main"]
