@@ -25,6 +25,7 @@ docker-run-debug:
 
 clean:
 	rm -rf bin/
+	docker rm -f $$(docker ps -a -q)
 	
 #docker run --publish 80:80 --publish 3000:3000 --name debug-server go-template-debug
 #docker rm $(docker ps -a -q)
