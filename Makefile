@@ -21,7 +21,7 @@ docker-run:
 
 docker-run-debug:
 	docker-compose up -d mysql
-	docker run --publish 80:80 --publish 3000:3000 --name debug-server go-template-debug
+	docker run --publish 8000:8000 --publish 3000:3000 --name debug-server go-template-debug
 
 clean:
 	rm -rf bin/

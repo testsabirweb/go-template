@@ -18,7 +18,7 @@ func GetConfig() (*Config, error) {
 	config := &Config{
 		DB: &DBConfig{
 			Dialect:  "mysql",
-			Host:     "10.80.47.37", //Your machine ip address
+			Host:     "192.168.1.7", //Your machine ip address
 			Port:     3306,
 			Username: "guest",
 			Password: "Guest0000!",

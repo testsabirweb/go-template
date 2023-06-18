@@ -16,7 +16,7 @@ services:
       dockerfile: Dockerfile.debug
     ports:
       - "3000:3000"
-      - "80:80"
+      - "8000:8000"
     depends_on:
       - mysql
     command: sh -c 'sleep 5 && go run ./main.go'
